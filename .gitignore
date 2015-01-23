@@ -1,5 +1,5 @@
 *.class
-
+.bluej.ctxt
 # Eclipse #
 bin/
 .settings/
