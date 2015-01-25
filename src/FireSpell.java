@@ -1,7 +1,7 @@
-public class fireSpellasdf extends Spell{
+public class FireSpell extends Spell{
     private int burnDamage;
     private int spellDamage;
-    public fireSpellasdf(){
+    public FireSpell(){
         spellName = "Fire";
         levelRequire = 1; //Anyone can use it
         manaRequire = 5; //can be any number
