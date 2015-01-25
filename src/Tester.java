@@ -5,16 +5,18 @@ public class Tester {
         System.out.print('\f');//Moved command here becuase it clears the screen at the start of the program. Only works in BlueJ
         Scanner in = new Scanner(System.in);
         String input = "n";
-        String userName = ""; //Added in variable for user to call name
+        
+        String userName = "";
         System.out.println("Welcome to the world, young adventurer."); //Give a little more of a game feel
-        while(input.equals("n")){
-            System.out.println("And how are you called?");
+        do {
+            System.out.println("And what are you called?");
             userName = in.nextLine();
             System.out.println("So you are called "+userName+", is that correct?");
             input = in.nextLine(); //if input = "n", the user will be able to re-enter their name.
-        }
+        } while(input.equals("n"));
+            
         Player player = new Player(userName, 1, 1, 1, 1);
-        input = "y"; //Sets input to "y" to enter the while loop the first time
+        input = "y";
         while (input.equals("y")) {
 
             Enemy enemy = new Enemy(1, "Blob");
