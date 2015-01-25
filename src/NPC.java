@@ -1,10 +1,10 @@
-//Bryden Robertson
 public class NPC{
     private String name;
     private String type;
-    public NPC(String n, String t){
-        name = n;
-        type = t;
+    
+    public NPC(String name, String type){
+        this.name = name;
+        this.type = type;
     }
     public String getType(){
         return type;

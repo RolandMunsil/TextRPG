@@ -1,37 +1,39 @@
 public class Armor extends Item{
     private int def;
-    private boolean ench;
+    private boolean enchanted;
     private int level;
     private double exp;
     private String name;
-    private int value;
+    private int monetaryValue;
     private int size;
     private int hands;
     private String type;
-    public Armor(int l, String n, int s, int h, String t){
-        level = l;
-        hands = h;
-        type = t;
+    
+    public Armor(int level, String name, int size, int hands, String type){
+        this.level = level;
+        this.hands = hands;
+        this.type = type;
+        this.size = size;
+        this.name = name;
+        
         exp = 0;
-        size = s;
-        name = n;
-        int enchant = (int)(Math.random()*10);
-        if(enchant > 7){
-            ench = true;
+        
+        if(Math.random()*10 > 7){
+        	enchanted = true;
         }
         else{
-            ench = false;
+        	enchanted = false;
         }
-        value = level*6;
-        if(ench==true){
-            value = value*2;
+        monetaryValue = level*6;
+        if(enchanted){
+        	monetaryValue *= 2;
         }
     }
     public int getDefense(){
         return def;
     }
     public boolean getEnchanted(){
-        return ench;
+        return enchanted;
     }
     public int getLevel(){
         return level;
@@ -42,8 +44,8 @@ public class Armor extends Item{
     public String getName(){
         return name;
     }
-    public int getValue(){
-        return value;
+    public int getMonetaryValue(){
+        return monetaryValue;
     }
     public int getSize(){
         return size;
@@ -55,10 +57,10 @@ public class Armor extends Item{
         return type;
     }
     public String toString(){
-        String e = "";
-        if(ench = true){
-            e = "enchanted";
+        String enchantedString = "";
+        if(enchanted){
+        	enchantedString = "enchanted";
         }
-        return "The "+e+" level "+level+" "+name+" is worth "+value+" and has "+def+" defense";
+        return "The "+enchantedString+" level "+level+" "+name+" is worth "+monetaryValue+" and has "+def+" defense";
     }
 }

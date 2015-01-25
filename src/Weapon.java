@@ -1,37 +1,39 @@
-public class Weapon extends Item{
-    public int dam; //base damage
-    public boolean ench; //if it is enchanted or nah
+public class Weapon extends Item {
+    public int damage; //base damage
+    public boolean enchanted; //if it is enchanted or not
     public int level; //level of the weapon. Strong level, stronger weapon!
     public double exp; //allows the weapon to go up a level? maybe include
     public String name; //what the weapon is called (if any);
-    public int value; //How muc hteh weapon is worth
+    public int monetaryValue; //How much the weapon is worth
     public int size; //How big it is, bigger weapon has more potential, harder to use.
     public int hands; //How many hands it requires
     public String type; //What type it is
-    public Weapon(int l, String n, int s, int h, String t){
-        level = l;
-        hands = h;
-        type = t;
-        exp = 0; //experience points starts at 0
-        size = s;
-        name = n;
-        int enchant = (int)(Math.random()*10); //random to see if item is enchanted
-        if(enchant > 7){
-            ench = true;
+    
+    public Weapon(int level, String name, int size, int hands, String type){
+        this.level = level;
+        this.hands = hands;
+        this.type = type;
+        this.size = size;
+        this.name = name;
+        
+        exp = 0;
+        
+        if(Math.random()*10 > 7){
+            enchanted = true;
         }
         else{
-            ench = false;
+            enchanted = false;
         }
-        value = level*6; //value is determined by level
-        if(ench==true){
-            value = value*2; //if enchanted, more valuable
+        monetaryValue = level*6; //value is determined by level
+        if(enchanted){
+            monetaryValue *= 2; //if enchanted, more valuable
         }
     }
     public int getDamage(){
-        return dam;
+        return damage;
     }
     public boolean getEnchanted(){
-        return ench;
+        return enchanted;
     }
     public int getLevel(){
         return level;
@@ -42,8 +44,8 @@ public class Weapon extends Item{
     public String getName(){
         return name;
     }
-    public int getValue(){
-        return value;
+    public int getMonetaryValue(){
+        return monetaryValue;
     }
     public int getSize(){
         return size;
@@ -55,10 +57,10 @@ public class Weapon extends Item{
         return type;
     }
     public String toString(){
-        String e = "";
-        if(ench = true){
-            e = "enchanted";
+        String enchantedString = "";
+        if(enchanted){
+        	enchantedString = "enchanted";
         }
-        return "The "+e+" level "+level+" "+name+" is worth "+value;
+        return "The " + enchantedString + " level " + level + " " + name + " is worth " + monetaryValue;
     }
 }

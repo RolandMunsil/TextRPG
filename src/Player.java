@@ -1,18 +1,19 @@
 public class Player{
     private String name;
-    private int BDp;
-    private int BDm;
-    private int BDr;
-    private int str;
-    private int dex;
-    private int cha;
-    private int itl;
+    private int physicalBaseDamage;
+    private int magicalBaseDamage;
+    private int rangedBaseDamage;
+    private int strength;
+    private int dexterity;
+    private int charisma;
+    private int intelligence;
     private int level;
     private double exp;
-    private Weapon w1;
-    private Weapon w2;
+    private Weapon weapon1;
+    private Weapon weapon2;
     private int wealth;
-    /*Variable to add?:
+    
+    /* Variables to add?:
      * array of spells
      * array of items that Player has
      * 
@@ -22,102 +23,101 @@ public class Player{
      * stat boosting
      * equipping items
      */
-    public Player(String n, int s, int d, int c, int i){
-        name = n;
-        str = s;
-        dex = d;
-        cha = c;
-        itl = i;
+    
+    public Player(String name, int strength, int dexterity, int charisma, int intelligence){
+        this.name = name;
+        this.strength = strength;
+        this.dexterity = dexterity;
+        this.charisma = charisma;
+        this.intelligence = intelligence;
+        
         level = 1;
         exp = 0;
-        BDp = (level+str+(dex/2));
-        BDr = (level+dex+(str/2));
-        BDm = (level+itl+(dex/2));
         wealth = 0;
+        
+        physicalBaseDamage = (level+strength+(dexterity/2));
+        rangedBaseDamage = (level+dexterity+(strength/2));
+        magicalBaseDamage = (level+intelligence+(dexterity/2));
     }
 
-    public void gainExp(int a){
-        boolean check = true;
-        int LC = 0;
-        exp = exp+a;
-        while (check == true){
-            if(exp >=10){
-                level++;
-                exp = exp-10;
-                LC++;
-            }
-            else{
-                check = false;
-            }
+    public void gainExp(int gainedExp){
+    	System.out.println("You gained " + gainedExp + " exp!");
+    	
+    	int levelsGained = 0;
+        exp += gainedExp;
+        while (exp >= 10){
+            exp -= 10;
+            levelsGained++;
         }
-        System.out.println("You gained "+a+" exp!");
-        if(LC>0){
-            System.out.println("Congrats! you have gone up "+LC+" level(s)");
+        if(levelsGained > 0){
+        	level += levelsGained;
+        	
+            System.out.println("Congrats! you have gone up " + levelsGained + " level(s)");
             System.out.println("You are now level "+level+"!");
         }
     }
 
-    public void changeWealth(int a){
-        wealth = wealth+a;
-        if(a>0){
-            System.out.println("You have gained "+a+" money.");
+    public void changeWealth(int moneyChange){
+        wealth += +moneyChange;
+        if(moneyChange > 0){
+            System.out.println("You have gained " + moneyChange + " money.");
         }
-        else if(a<0){
-            System.out.println("You have lost "+a+" money.");
+        else if(moneyChange < 0){
+            System.out.println("You have lost " + moneyChange + " money.");
         }
     }
 
     public int attackP(){
-        int damage = 10;// BDp+((int)(Math.random()*level));
-        return damage;
+        //int damage = 10;// BDp+((int)(Math.random()*level));
+        return 10;
     }
 
-    public void assignWeapon(Weapon a){
-        w1 = a;
+    public void assignWeapon(Weapon weapon){
+        weapon1 = weapon;
     }
 
     public Weapon getWeapon(){
-        return w1;
+        return weapon1;
     }
 
     public String getName(){
         return name;
     }
 
-    public Weapon getW1(){
-        return w1;
+    public Weapon getWeapon1(){
+        return weapon1;
     }
 
-    public Weapon getW2(){
-        return w2;
+    public Weapon getWeapon2(){
+        return weapon2;
     }
 
-    public int getBDp(){
-        return BDp;
+    public int getPhysicalBaseDamage(){
+        return physicalBaseDamage;
     }
 
-    public int getBDm(){
-        return BDm;
+    public int getMagicalBaseDamage(){
+        return magicalBaseDamage;
     }
 
-    public int getBDr(){
-        return BDr;
+    public int getRangedBaseDamage(){
+        return rangedBaseDamage;
     }
 
-    public int getStr(){
-        return str;
+    public int getStrength(){
+        return strength;
     }
 
-    public int getDex(){
-        return dex;
+    public int getDexterity(){
+        return dexterity;
     }
 
-    public int getItl(){
-        return itl;
+    public int getIntelligence(){
+        return intelligence;
     }
 
-    public int getCha(){
-        return cha;
+    public int getCharisma(){
+        return charisma;
     }
 
     public int getLevel(){
@@ -129,6 +129,6 @@ public class Player{
     }
 
     public String toString(){
-        return "name: "+name+"\nlevel: "+level+"\nmoney: "+wealth;
+        return "name: " + name + "\nlevel: " + level + "\nmoney: " + wealth;
     }
 }

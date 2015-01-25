@@ -1,17 +1,18 @@
-//Bryden Robertson
 import java.util.ArrayList;
-public class shopKeeper{
+
+public class ShopKeeper{
     private String name;
     private String type;
     private int level;
-    private ArrayList Item = new ArrayList();
-    public shopKeeper(String n, String t, int l){
-        name = n;
-        type = t;
-        level = l;
+    private ArrayList<Item> items = new ArrayList<Item>();
+    
+    public ShopKeeper(String name, String type, int level){
+        this.name = name;
+        this.type = type;
+        this.level = level;
     }
-    public ArrayList getItems(){
-        return Item;
+    public ArrayList<Item> getItems(){
+        return items;
     }
 }
         
