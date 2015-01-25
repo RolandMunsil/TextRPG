@@ -1,4 +1,4 @@
-public class Armor extends Item{
+public class Armor extends Item {
     private int def;
     private boolean enchanted;
     private int level;
@@ -8,59 +8,69 @@ public class Armor extends Item{
     private int size;
     private int hands;
     private String type;
-    
-    public Armor(int level, String name, int size, int hands, String type){
+
+    public Armor(int level, String name, int size, int hands, String type) {
         this.level = level;
         this.hands = hands;
         this.type = type;
         this.size = size;
         this.name = name;
-        
+
         exp = 0;
-        
-        if(Math.random()*10 > 7){
-        	enchanted = true;
+
+        if (Math.random() * 10 > 7) {
+            enchanted = true;
         }
-        else{
-        	enchanted = false;
+        else {
+            enchanted = false;
         }
-        monetaryValue = level*6;
-        if(enchanted){
-        	monetaryValue *= 2;
+        monetaryValue = level * 6;
+        if (enchanted) {
+            monetaryValue *= 2;
         }
     }
-    public int getDefense(){
+
+    public int getDefense() {
         return def;
     }
-    public boolean getEnchanted(){
+
+    public boolean getEnchanted() {
         return enchanted;
     }
-    public int getLevel(){
+
+    public int getLevel() {
         return level;
     }
-    public double getExp(){
+
+    public double getExp() {
         return exp;
     }
-    public String getName(){
+
+    public String getName() {
         return name;
     }
-    public int getMonetaryValue(){
+
+    public int getMonetaryValue() {
         return monetaryValue;
     }
-    public int getSize(){
+
+    public int getSize() {
         return size;
     }
-    public int getHands(){
+
+    public int getHands() {
         return hands;
     }
-    public String getType(){
+
+    public String getType() {
         return type;
     }
-    public String toString(){
+
+    public String toString() {
         String enchantedString = "";
-        if(enchanted){
-        	enchantedString = "enchanted";
+        if (enchanted) {
+            enchantedString = "enchanted";
         }
-        return "The "+enchantedString+" level "+level+" "+name+" is worth "+monetaryValue+" and has "+def+" defense";
+        return "The " + enchantedString + " level " + level + " " + name + " is worth " + monetaryValue + " and has " + def + " defense";
     }
 }

@@ -8,58 +8,68 @@ public class Weapon extends Item {
     public int size; //How big it is, bigger weapon has more potential, harder to use.
     public int hands; //How many hands it requires
     public String type; //What type it is
-    
-    public Weapon(int level, String name, int size, int hands, String type){
+
+    public Weapon(int level, String name, int size, int hands, String type) {
         this.level = level;
         this.hands = hands;
         this.type = type;
         this.size = size;
         this.name = name;
-        
+
         exp = 0;
-        
-        if(Math.random()*10 > 7){
+
+        if (Math.random() * 10 > 7) {
             enchanted = true;
         }
-        else{
+        else {
             enchanted = false;
         }
-        monetaryValue = level*6; //value is determined by level
-        if(enchanted){
+        monetaryValue = level * 6; //value is determined by level
+        if (enchanted) {
             monetaryValue *= 2; //if enchanted, more valuable
         }
     }
-    public int getDamage(){
+
+    public int getDamage() {
         return damage;
     }
-    public boolean getEnchanted(){
+
+    public boolean getEnchanted() {
         return enchanted;
     }
-    public int getLevel(){
+
+    public int getLevel() {
         return level;
     }
-    public double getExp(){
+
+    public double getExp() {
         return exp;
     }
-    public String getName(){
+
+    public String getName() {
         return name;
     }
-    public int getMonetaryValue(){
+
+    public int getMonetaryValue() {
         return monetaryValue;
     }
-    public int getSize(){
+
+    public int getSize() {
         return size;
     }
-    public int getHands(){
+
+    public int getHands() {
         return hands;
     }
-    public String getType(){
+
+    public String getType() {
         return type;
     }
-    public String toString(){
+
+    public String toString() {
         String enchantedString = "";
-        if(enchanted){
-        	enchantedString = "enchanted";
+        if (enchanted) {
+            enchantedString = "enchanted";
         }
         return "The " + enchantedString + " level " + level + " " + name + " is worth " + monetaryValue;
     }
