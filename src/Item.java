@@ -1,8 +1,8 @@
 public class Item {
-    private String name;
-    private int value;
-    private boolean owned;
-    private int level;
+    public String name;
+    public int monetaryValue;
+    public boolean owned;
+    public int level;
 
     public Item() {
 

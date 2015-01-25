@@ -1,5 +1,5 @@
 public class Player {
-    private String name;
+    public String name;
     private int physicalBaseDamage;
     private int magicalBaseDamage;
     private int rangedBaseDamage;
@@ -7,17 +7,17 @@ public class Player {
     private int dexterity;
     private int charisma;
     private int intelligence;
-    private int level;
-    private double exp;
+    public int level;
+    public double exp;
     private Weapon weapon1;
     private Weapon weapon2;
-    private int wealth;
+    public int wealth;
 
     /*
      * Variables to add?:
      * array of spells
      * array of items that Player has
-     * 
+     *
      * Methods to add?
      * use spell
      * die
@@ -35,54 +35,35 @@ public class Player {
         level = 1;
         exp = 0;
         wealth = 0;
+        weapon1 = new Weapon(level, "Skullcrusher Omega", 10, 2, "Bastard sword");
 
         physicalBaseDamage = (level + strength + (dexterity / 2));
         rangedBaseDamage = (level + dexterity + (strength / 2));
         magicalBaseDamage = (level + intelligence + (dexterity / 2));
     }
 
-    public void gainExp(int gainedExp) {
-        System.out.println("You gained " + gainedExp + " exp!");
-
+    public int gainExp(int gainedExp) {
         int levelsGained = 0;
         exp += gainedExp;
         while (exp >= 10) {
             exp -= 10;
             levelsGained++;
         }
-        if (levelsGained > 0) {
-            level += levelsGained;
-
-            System.out.println("Congrats! you have gone up " + levelsGained + " level(s)");
-            System.out.println("You are now level " + level + "!");
-        }
+        level += levelsGained;
+        return levelsGained;
     }
 
     public void changeWealth(int moneyChange) {
         wealth += moneyChange;
-        if (moneyChange > 0) {
-            System.out.println("You have gained " + moneyChange + " money.");
-        }
-        else if (moneyChange < 0) {
-            System.out.println("You have lost " + moneyChange + " money.");
-        }
     }
 
-    public int attackP() {
+    public int getDamage() {
         //int damage = 10;//BDp+((int)(Math.random()*level));
-        return 10;
+        return (weapon1.baseDamage + physicalBaseDamage) * (1 + (int)(Math.random() * (level + weapon1.level)));
     }
 
     public void assignWeapon(Weapon weapon) {
         weapon1 = weapon;
-    }
-
-    public Weapon getWeapon() {
-        return weapon1;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public Weapon getWeapon1() {
@@ -121,14 +102,7 @@ public class Player {
         return charisma;
     }
 
-    public int getLevel() {
-        return level;
-    }
-
-    public double getExp() {
-        return exp;
-    }
-
+    @Override
     public String toString() {
         return "name: " + name + "\nlevel: " + level + "\nmoney: " + wealth;
     }
