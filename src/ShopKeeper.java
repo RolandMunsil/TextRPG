@@ -1,12 +1,12 @@
 import java.util.ArrayList;
 
-public class ShopKeeperasdf{
+public class ShopKeeper{
     private String name;
     private String type;
     private int level;
     private ArrayList<Item> items = new ArrayList<Item>();
     
-    public ShopKeeperasdf(String name, String type, int level){
+    public ShopKeeper(String name, String type, int level){
         this.name = name;
         this.type = type;
         this.level = level;
