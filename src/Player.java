@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 public class Player {
     public String name;
     private int physicalBaseDamage;
@@ -12,7 +13,7 @@ public class Player {
     private Weapon weapon1;
     private Weapon weapon2;
     public int wealth;
-
+    private ArrayList<Spell> spells= new ArrayList<Spell>();
     /*
      * Variables to add?:
      * array of spells
@@ -52,7 +53,12 @@ public class Player {
         level += levelsGained;
         return levelsGained;
     }
-
+    public void spellAdd(Spell newSpell){
+        spells.add(newSpell);
+    }
+    public ArrayList listSpells(){
+        return spells;
+    }
     public void changeWealth(int moneyChange) {
         wealth += moneyChange;
     }
