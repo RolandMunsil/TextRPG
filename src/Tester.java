@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Tester {
-    public static void main(String[] args) {
+    public static void main(String[] args) {       
         System.out.print('\f');//Moved command here becuase it clears the screen at the start of the program. Only works in BlueJ
         Scanner in = new Scanner(System.in);
         String input = "n";

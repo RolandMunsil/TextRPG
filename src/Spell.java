@@ -6,7 +6,7 @@ public class Spell{
     public Spell(){
         
     }
-    public String getSpellName(){ //has to be in this class for the method "getSpellName" to work
+    public String getSpellName(){
         return spellName;
     }
 }
