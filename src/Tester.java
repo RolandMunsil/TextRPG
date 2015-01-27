@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Tester {
     public static void main(String[] args) {       
-        System.out.print('\f');//Moved command here becuase it clears the screen at the start of the program. Only works in BlueJ
+        System.out.print('\f');//Clears the screen at the start of the program. Only works in BlueJ
         Scanner in = new Scanner(System.in);
         String input = "n";
         
@@ -32,7 +32,7 @@ public class Tester {
 
                 //Idea for how attacks could work:
                 //some sort of Attacker interface, then have an Attack method with params attacker and defender.
-                //it woulc calculate damage, defense, hp lost, etc.
+                //it would calculate damage, defense, hp lost, etc.
 
                 int playerDamage = player.getDamage();
                 int prevHp = enemy.hp;
@@ -44,7 +44,7 @@ public class Tester {
             System.out.println();
             System.out.println("The " + enemy.type + " was killed!");
 
-            int enemyEXP = enemy.getEXP();
+            int enemyEXP = enemy.getEXPWorth();
             int levelsGained = player.gainExp(enemyEXP);
             String expWord = enemyEXP == 1 ? "experience point" : "experience points";
 

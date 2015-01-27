@@ -1,10 +1,8 @@
 public class Weapon extends Item {
     public int baseDamage; //base damage
     public boolean enchanted; //if it is enchanted or not
-    //public int level; //level of the weapon. Strong level, stronger weapon!
     public double exp; //allows the weapon to go up a level? maybe include
     public String name; //what the weapon is called (if any);
-    //public int monetaryValue; //How much the weapon is worth
     public int size; //How big it is, bigger weapon has more potential, harder to use.
     public int hands; //How many hands it requires
     public String type; //What type it is

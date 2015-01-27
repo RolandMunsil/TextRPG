@@ -3,9 +3,9 @@ public class SpellTester{
         System.out.print('\f');
         Player player = new Player("W",1,1,1,1);
         Spell spell = new FireSpell();
-        System.out.println(spell.getSpellName());
+        System.out.println(spell.name);
         System.out.println(spell);
-        player.spellAdd(spell);
-        System.out.println(player.listSpells());
+        player.addSpell(spell);
+        System.out.println(player.getSpellNames());
     }
 }

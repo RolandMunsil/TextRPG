@@ -13,8 +13,7 @@ public class Player {
     private Weapon weapon1;
     private Weapon weapon2;
     public int wealth;
-    private ArrayList<Spell> spells= new ArrayList<Spell>();
-    private ArrayList<String> spellNames= new ArrayList<String>();
+    private ArrayList<Spell> spells = new ArrayList<Spell>();
     /*
      * Variables to add?:
      * array of spells
@@ -59,16 +58,18 @@ public class Player {
         level += levelsGained;
         return levelsGained;
     }
-    public void spellAdd(Spell newSpell){
+    public void addSpell(Spell newSpell){
         spells.add(newSpell);
-        spellNames.add(newSpell.spellName);
     }
-    public ArrayList listSpells(){
+    public ArrayList<String> getSpellNames(){
+        ArrayList<String> spellNames = new ArrayList<String>(spells.size());
+        for(Spell spell : spells)
+        {
+            spellNames.add(spell.name);
+        }
         return spellNames;
     }
-    public ArrayList listSpellNames(){
-        return spellNames;
-    }
+
     public void changeWealth(int moneyChange) {
         wealth += moneyChange;
     }

@@ -25,17 +25,12 @@ public class Enemy {
         }
     }
 
-    public int getEXP() {
+    public int getEXPWorth() {
         return level;
     }
 
     public boolean droppedWeapon() {
-        if (Math.random() * level * 10 > 5) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return ((int)(Math.random() * level * 2) == 0);
     }
 
     public Weapon getRandWeapon() {
