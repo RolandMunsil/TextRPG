@@ -14,6 +14,7 @@ public class Player {
     private Weapon weapon2;
     public int wealth;
     private ArrayList<Spell> spells= new ArrayList<Spell>();
+    private ArrayList<String> spellNames= new ArrayList<String>();
     /*
      * Variables to add?:
      * array of spells
@@ -42,6 +43,11 @@ public class Player {
         rangedBaseDamage = (level + dexterity + (strength / 2));
         magicalBaseDamage = (level + intelligence + (dexterity / 2));
     }
+    public void playerDeath(){
+        System.out.println("You have died!");
+        wealth = wealth/2;
+        System.out.println("You have lost "+wealth+" wealth...");
+    }
 
     public int gainExp(int gainedExp) {
         int levelsGained = 0;
@@ -55,9 +61,13 @@ public class Player {
     }
     public void spellAdd(Spell newSpell){
         spells.add(newSpell);
+        spellNames.add(newSpell.spellName);
     }
     public ArrayList listSpells(){
-        return spells;
+        return spellNames;
+    }
+    public ArrayList listSpellNames(){
+        return spellNames;
     }
     public void changeWealth(int moneyChange) {
         wealth += moneyChange;
