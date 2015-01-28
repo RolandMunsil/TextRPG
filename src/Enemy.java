@@ -1,4 +1,7 @@
 public class Enemy {
+    //TODO: move to Tester or more general class?
+    static String[] randomWeaponNames = { "Stick", "Atom Bomb", "Rapier", "Inferno Sword", "Bone Sabre", "Scimitar", "pair of Poison Daggers" };
+    
     public int hp;
     public int level;
     private int baseDamage;
@@ -10,15 +13,17 @@ public class Enemy {
         this.type = type;
         this.level = level;
 
-        hp = level * 10;
+        hp = level * 25;
         baseDamage = level * 5;
-        defense = level * 2;
+        defense = level * 5;
         isAlive = true;
     }
 
     public void hurt(int damageFromPlayer) {
-        int defendedDamage = (int)(Math.random() * defense);
-        int damageDone = Math.max(0, (damageFromPlayer - defendedDamage));
+        //In the range (defense / 2) to defense
+        int defendedDamage = (int)((Math.random() + 1) / 2 * defense);
+        //Always do at least 1 damage - feels better
+        int damageDone = Math.max(1, (damageFromPlayer - defendedDamage));
         hp = hp - damageDone;
         if (hp <= 0) {
             isAlive = false;
@@ -26,16 +31,18 @@ public class Enemy {
     }
 
     public int getEXPWorth() {
-        return level;
+        return (int)(level * 10 * (Math.random() + 1));
     }
 
     public boolean droppedWeapon() {
         return ((int)(Math.random() * level * 2) == 0);
     }
 
+    //TODO: move to Tester or more general class?
     public Weapon getRandWeapon() {
-        int level = (int)(Math.random() * this.level + 1);
-        Weapon weapon = new Weapon(level, "Stick", 1, 1, "stick");
+        int level = (int)((Math.random() + 1.5) * this.level);
+        String name = randomWeaponNames[(int)(Math.random() * randomWeaponNames.length)];
+        Weapon weapon = new Weapon(level, name);
         return weapon;
     }
 }

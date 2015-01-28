@@ -36,7 +36,7 @@ public class Player {
         level = 1;
         exp = 0;
         wealth = 0;
-        weapon1 = new Weapon(level, "Skullcrusher Omega", 10, 2, "Bastard sword");
+        weapon1 = new Weapon(level, "Skullcrusher Omega");
 
         physicalBaseDamage = (level + strength + (dexterity / 2));
         rangedBaseDamage = (level + dexterity + (strength / 2));
@@ -49,12 +49,13 @@ public class Player {
     }
 
     public int gainExp(int gainedExp) {
-        int levelsGained = 0;
+        //20 exp = 1 level
+        
         exp += gainedExp;
-        while (exp >= 10) {
-            exp -= 10;
-            levelsGained++;
-        }
+        int levelsGained = (int)(exp / 20);
+        exp = exp % 20;
+        
+        
         level += levelsGained;
         return levelsGained;
     }
@@ -76,7 +77,7 @@ public class Player {
 
     public int getDamage() {
         //int damage = 10;//BDp+((int)(Math.random()*level));
-        return (weapon1.baseDamage + physicalBaseDamage) * (1 + (int)(Math.random() * (level + weapon1.level)));
+        return 1 + (int)((weapon1.baseDamage + physicalBaseDamage) * (0.25 + (Math.random() * (level + weapon1.level))));
     }
 
     public void assignWeapon(Weapon weapon) {
