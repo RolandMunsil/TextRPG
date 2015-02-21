@@ -17,9 +17,9 @@ public class Tester {
             System.out.println("So you are called "+userName+", is that correct?"); 
         } while(in.nextLine().startsWith("n")); //if input starts with "n", the user will be able to re-enter their name.
             
-        Player player = new Player(userName, 1, 1, 1, 1);
+        Player player = new Player(userName, 100, 1, 1, 1);
         String input = "y";
-        while (input.startsWith("y")) {
+        topwhile : while (input.startsWith("y")) {
 
             Enemy enemy = generateRandomEnemy(player.level);
             System.out.println("A level " + enemy.level + " " + enemy.type + " appeared!");
@@ -27,13 +27,6 @@ public class Tester {
             while (enemy.isAlive) {
                 //Just wait for the player to press a key
                 in.nextLine();
-                
-                //System.out.print("Attack? ");
-                //input = in.nextLine();
-                //if (!input.startsWith("y")) {
-                //    System.out.println("OK. Goodbye!");
-                //    return;
-                //}
 
                 //Idea for how attacks could work:
                 //some sort of Attacker interface, then have an Attack method with params attacker and defender.
@@ -46,7 +39,20 @@ public class Tester {
                 //System.out.println(player.name + " attacked with the " + player.getWeapon1().name + ".");
                 System.out.println(player.name + " did " + (prevHp - enemy.hp) + " damage to the " + enemy.type + ".");
                 
-                //TODO: make enemy attack player.
+                if(enemy.isAlive) {
+                    int enemyDamage = enemy.getDamage();
+                    int prevPlayerHP = player.hp;
+                    player.hurt(enemyDamage);
+                    
+                    System.out.println("The " + enemy.type + " did " + (prevPlayerHP - player.hp) + " damage to " + player.name + ". Renaming health: " + player.hp + ".");
+                    
+                    if(!player.isAlive) {
+                        System.out.println();
+                        System.out.println("Oh no! " + player.name + " died!");
+                        System.out.println("Game Over");
+                        break topwhile;
+                    }
+                }
             }
             System.out.println();
             System.out.println("The " + enemy.type + " was killed!");

@@ -1,19 +1,32 @@
 import java.util.ArrayList;
 public class Player {
-    public String name;
-    private int physicalBaseDamage;
-    private int magicalBaseDamage;
-    private int rangedBaseDamage;
+    
+    //Damage
+//    private int physicalBaseDamage;
+//    private int magicalBaseDamage;
+//    private int rangedBaseDamage;
+    
+    //Stats
     private int strength;
     private int dexterity;
-    private int charisma;
-    private int intelligence;
+//    private int charisma;
+//    private int intelligence;
+    private int defense;
+    
+    //Qualities (yes it's not a good name)
+    public String name;
     public int level;
     public double exp;
-    private Weapon weapon1;
-    private Weapon weapon2;
-    public int wealth;
+//    public int wealth;
+    public int hp;
+    public boolean isAlive;
+    
+    //Weapons
+    private Weapon weapon;
+//    private Weapon weapon2;
     private ArrayList<Spell> spells = new ArrayList<Spell>();
+    
+    
     /*
      * Variables to add?:
      * array of spells
@@ -26,26 +39,41 @@ public class Player {
      * equipping items
      */
 
-    public Player(String name, int strength, int dexterity, int charisma, int intelligence) {
+    public Player(String name, int hp, int strength, int dexterity, int defense) {
         this.name = name;
         this.strength = strength;
         this.dexterity = dexterity;
-        this.charisma = charisma;
-        this.intelligence = intelligence;
+//        this.charisma = charisma;
+//        this.intelligence = intelligence;
+        this.defense = defense;
 
         level = 1;
         exp = 0;
-        wealth = 0;
-        weapon1 = new Weapon(level, "Skullcrusher Omega");
+//        wealth = 0;
+        isAlive = true;
+        this.hp = hp;
 
-        physicalBaseDamage = (level + strength + (dexterity / 2));
-        rangedBaseDamage = (level + dexterity + (strength / 2));
-        magicalBaseDamage = (level + intelligence + (dexterity / 2));
+//        physicalBaseDamage = (level + strength + (dexterity / 2));
+//        rangedBaseDamage = (level + dexterity + (strength / 2));
+//        magicalBaseDamage = (level + intelligence + (dexterity / 2));
+        
+        weapon = new Weapon(level, "Skullcrusher Omega");
     }
     public void playerDeath(){
         System.out.println("You have died!");
-        wealth = wealth/2;
-        System.out.println("You have lost "+wealth+" wealth...");
+//        wealth = wealth/2;
+//        System.out.println("You have lost "+wealth+" wealth...");
+    }
+    
+    public void hurt(int damageFromEnemy) {
+        //In the range (defense / 2) to defense
+        int defendedDamage = (int)((Math.random() + 1) / 2 * defense);
+        //Ensure damage done is never negative
+        int damageDone = Math.max(0, (damageFromEnemy - defendedDamage));
+        hp = hp - damageDone;
+        if (hp <= 0) {
+            isAlive = false;
+        }
     }
 
     public int gainExp(int gainedExp) {
@@ -71,38 +99,42 @@ public class Player {
         return spellNames;
     }
 
-    public void changeWealth(int moneyChange) {
-        wealth += moneyChange;
+//    public void changeWealth(int moneyChange) {
+//        wealth += moneyChange;
+//    }
+    
+    private int calculateBaseDamage() {
+        return (level + strength + (dexterity / 2));
     }
 
     public int getDamage() {
         //int damage = 10;//BDp+((int)(Math.random()*level));
-        return 1 + (int)((weapon1.baseDamage + physicalBaseDamage) * (0.25 + (Math.random() * (level + weapon1.level))));
+        return 1 + (int)((weapon.baseDamage + calculateBaseDamage()) * (0.25 + (Math.random() * (level + weapon.level))));
     }
 
     public void assignWeapon(Weapon weapon) {
-        weapon1 = weapon;
+        this.weapon = weapon;
     }
 
-    public Weapon getWeapon1() {
-        return weapon1;
+    public Weapon getWeapon() {
+        return weapon;
     }
 
-    public Weapon getWeapon2() {
-        return weapon2;
-    }
+//    public Weapon getWeapon2() {
+//        return weapon2;
+//    }
 
-    public int getPhysicalBaseDamage() {
-        return physicalBaseDamage;
-    }
-
-    public int getMagicalBaseDamage() {
-        return magicalBaseDamage;
-    }
-
-    public int getRangedBaseDamage() {
-        return rangedBaseDamage;
-    }
+//    public int getPhysicalBaseDamage() {
+//        return physicalBaseDamage;
+//    }
+//
+//    public int getMagicalBaseDamage() {
+//        return magicalBaseDamage;
+//    }
+//
+//    public int getRangedBaseDamage() {
+//        return rangedBaseDamage;
+//    }
 
     public int getStrength() {
         return strength;
@@ -112,16 +144,16 @@ public class Player {
         return dexterity;
     }
 
-    public int getIntelligence() {
-        return intelligence;
-    }
-
-    public int getCharisma() {
-        return charisma;
-    }
+//    public int getIntelligence() {
+//        return intelligence;
+//    }
+//
+//    public int getCharisma() {
+//        return charisma;
+//    }
 
     @Override
     public String toString() {
-        return "name: " + name + "\nlevel: " + level + "\nmoney: " + wealth;
+        return "name: " + name + "\nlevel: " + level;
     }
 }

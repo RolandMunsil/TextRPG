@@ -30,6 +30,10 @@ public class Enemy {
         }
     }
 
+    public int getDamage() {
+        return 1 + (int)(baseDamage * (0.25 + (Math.random() * level)));
+    }
+    
     public int getEXPWorth() {
         return (int)(level * 10 * (Math.random() + 1));
     }
